@@ -1,0 +1,52 @@
+void main() {
+  double accountBalance = 1000.0;
+
+  int userChoice = 2;
+
+  double amount = 250.0;
+
+  print("=== welcome to istapa atm ===");
+
+  if (userChoice == 1) {
+    print("current operation: check balance");
+    print("current balance: ₱${accountBalance.toStringAsFixed(2)}");
+  } else if (userChoice == 2) {
+    print("current operation: deposit");
+    accountBalance = deposit(accountBalance, amount);
+  } else if (userChoice == 3) {
+    print("current operation: withdraw");
+    accountBalance = withdraw(accountBalance, amount);
+  } else {
+    print("invalid choice.");
+  }
+
+  print("final balance: ₱${accountBalance.toStringAsFixed(2)}");
+}
+
+double deposit(double currentBalance, double amount) {
+  if (amount > 0) {
+    double newBalance = currentBalance + amount;
+    print("deposited: ₱${amount.toStringAsFixed(2)}");
+    print("new balance: ₱${newBalance.toStringAsFixed(2)}");
+    return newBalance;
+  } else {
+    print("invalid deposit amount.");
+    return currentBalance;
+  }
+}
+
+// Withdraw function
+double withdraw(double currentBalance, double amount) {
+  if (amount <= 0) {
+    print("Invalid withdrawal amount.");
+    return currentBalance;
+  } else if (amount > currentBalance) {
+    print("insufficient balance. withdrawal denied.");
+    return currentBalance;
+  } else {
+    double newBalance = currentBalance - amount;
+    print("withdrawn: ₱${amount.toStringAsFixed(2)}");
+    print("new balance: ₱${newBalance.toStringAsFixed(2)}");
+    return newBalance;
+  }
+}
